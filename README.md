@@ -1,5 +1,8 @@
-# Titel
-BNR Business Beats.
+# Titel // BNR Business Beats.
+
+Screenshot // *Momenteel niet beschikbaar*
+
+Live link // *Momenteel niet beschikbaar*
 
 ## Inhoudsopgave
   * [Beschrijving](#beschrijving)
@@ -8,7 +11,7 @@ BNR Business Beats.
   * [Licentie](#licentie)
 
 ## Beschrijving
-Hier wordt beschreven voor wie de site is, achtergrond informatie, details en randvoorwaarden van het project. Daarnaast staan hier ook de site preview en de link naar de site.
+Hier wordt beschreven voor wie de site is, achtergrond informatie, details en randvoorwaarden van het project.
 
 ### Achtergrondinformatie
 BNR nieuwsradio is een belangrijke bron van nieuws en informatie voor bedrijven en ondernemers in Nederland. Ze bieden verschillende diensten aan 
@@ -35,13 +38,6 @@ Een werkende muziekspeler die afspeelt terwijl je de pagina navigeert (zij doen 
 Het gestructureerd weergeven van de nieuwste artikelen. Er komen rond de 20 per dag bij en sommige hebben ook nog de ‘Breaking News’ tag dus dit 
 moet goed in het design worden meegenomen.
 Een eigen interpretatie van een BNR site design, gebaseerd die wel hun huisstijl integreert.
-
-
-### Screenshot
-*Momenteel niet beschikbaar*
-
-### Live link
-*Momenteel niet beschikbaar*
 
 ## Installatie
 Wanneer je het project hebt geforked en gekloond, kun je het openen in je editor. Open in je editor de terminal en installeer de volgende dingen: **NPM**, **Node.js** en **Nodemon**. Als dat allemaal is geïnstalleerd, kun je de site runnen met het volgende commando: `npm run dev` en dan draait de server lokaal.
