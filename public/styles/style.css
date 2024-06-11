@@ -1,0 +1,37 @@
+/* ---- Global styles ---- */
+
+:root {
+    /* colors */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+
+}
+
+/* ---- Utility classes ---- */
+
+.underlined {
+    text-decoration: underline;
+}
+
+.layout-container {
+    max-width: 1032px;
+    padding: 1rem;
+    margin: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1,
+h2,
+h3 {
+    
+}
