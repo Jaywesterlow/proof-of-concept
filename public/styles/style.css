@@ -1,37 +1,127 @@
 /* ---- Global styles ---- */
 
 :root {
-    /* colors */
+  --primary-color: #FFD200;
+	--color-100: #D7D2CB;
+	--color-40: #E9E6E2;
+	--color-20: #F2F1F0;
+	--color-black: #000;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "FSLucas", sans-serif;
 }
 
 body {
 
 }
 
-/* ---- Utility classes ---- */
+/* * ---------- Navigation ---------- */
 
-.underlined {
-    text-decoration: underline;
+nav {
+    background-color: var(--color-black);
+    padding: .6rem .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-.layout-container {
-    max-width: 1032px;
-    padding: 1rem;
-    margin: auto;
+img {
+    height: 46px;
+	padding: .25rem 1rem;
 }
 
-.hidden {
-    display: none !important;
+summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	flex-direction: column;
+    width: 30px;
 }
 
-h1,
-h2,
-h3 {
-    
+summary span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: var(--color-20);
+    margin: 3px 0;
+}
+
+/* * ---------- Animations ---------- */
+summary span:nth-child(1) {
+    transition: transform 0.3s ease;
+}
+
+summary span:nth-child(2) {
+    transition: transform 0.3s ease;
+}
+
+summary span:nth-child(3) {
+    transition: transform 0.3s ease;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    max-height: 0;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: var(--color-black);
+    width: 100%;
+    z-index: 1;
+}
+
+li {
+    padding: 10px;
+}
+
+a {
+    color: var(--color-20);
+    text-decoration: none;
+	transition: all .4s ease-in-out;
+}
+
+a:hover {
+	text-decoration: underline;
+	transition: all .4s ease-in-out;
+}
+
+/* Add the sliding effect */
+details[open] ul {
+    max-height: 300px;
+    transition: 0.5s ease-in;
+}
+
+@media (min-width: 1024px) {
+	
+    details {
+        display: none;
+    }
+
+	nav {
+		padding: 0 12rem;
+	}
+
+	img {
+		height: 60px;
+	}
+
+    nav ul {
+        display: flex;
+        max-height: none;
+        position: static;
+        flex-direction: row;
+		padding: 1rem 0;
+    }
+
+    li {
+        padding: 10px 20px;
+    }
 }

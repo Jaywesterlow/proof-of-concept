@@ -12,24 +12,24 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 
 // Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
-app.use(express.static("public"));
+app.use(express.static("./public"));
 
 // Zorg dat werken met request data makkelijker wordt
 app.use(express.urlencoded({ extended: true }));
 
 // ---- GET Routes ----
 
-// // Maak een GET route voor de index
-// app.get("/", function (request, response) {
-//   // Haal alle personen uit de WHOIS API op
-//   fetchJson(apiUrl).then((apiData) => {
-//     // apiData bevat gegevens van alle personen uit alle squads
-//     // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
+// Maak een GET route voor de index
+app.get("/", function (request, response) {
+  // Haal alle personen uit de WHOIS API op
+  fetchJson(apiUrl).then((apiData) => {
+    // apiData bevat gegevens van alle personen uit alle squads
+    // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
 
-//     // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-//     response.render("index", { article: apiData.data });
-//   });
-// });
+    // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+    response.render("index", { article: apiData.data });
+  });
+});
 
 app.get('/', (request, response) => {
     response.render('index')
