@@ -1,4 +1,10 @@
-/* ---- Global styles ---- */
+/* TODO: JS functie voor delayed inladen van scroll / swipe animatie
+   TODO: Spacing voor breaking nieuws na het inladen
+   TODO: Verwijder div in Breaking news
+   TODO: Filter sectie afmaken
+   TODO: Laad data in in server */
+
+/* *---- Global styles ---- */
 
 :root {
   --primary-color: #ffd200;
@@ -13,6 +19,48 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "FSLucas", sans-serif;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 4rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+
+@media only screen and (min-width: 464px) {  
+  h1 {
+    font-size: 6rem;
+    line-height: 5rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  h1 {
+    font-size: 8rem;
+    line-height: 7rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  h1 {
+    font-size: 7.5rem;
+    line-height: 6rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
 }
 
 body {
@@ -152,8 +200,6 @@ header article small {
 }
 
 header article h1 {
-  font-size: 5rem;
-  line-height: 4rem;
   margin-top: 0.5rem;
   margin-left: -0.25rem; /*? H1 Left spacing for no reason??? */
 }
@@ -207,8 +253,6 @@ header aside img {
   }
 
   header article h1 {
-    font-size: 6.5rem;
-    line-height: 5.5rem;
     margin-left: -0.4rem;
   }
 
@@ -235,11 +279,6 @@ header aside img {
 @media only screen and (min-width: 1200px) {
   header {
     padding: 0 12rem;
-  }
-
-  header article h1 {
-    font-size: 7.5rem;
-    line-height: 6rem;
   }
 }
 
@@ -481,10 +520,122 @@ a.swipe-finger:active svg {
 	fill: var(--color-100);
 }
 
-/*  */
+/* * Swipe Animation Media Query */
 
 @media only screen and (min-width: 1024px) {
-	a.swipe-finger svg {
+	a.swipe-finger {
 		display: none;
 	}
+}
+
+/* * ---------- About Section ---------- */
+
+section#about {
+  width: 100%;
+  background-color: var(--color-100);
+  padding: 2rem 3rem 20rem;
+  position: relative;
+  margin-bottom: 14rem; /* ? change when breaking news is loaded in */
+}
+
+section#about article {
+  margin-bottom: 4rem;
+}
+
+section#about aside {
+  position: absolute;
+  width: calc(100% - 6rem);
+  background-color: var(--primary-color);
+  padding: 1rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section#about aside div {
+  height: 300px;
+  width: 100%;
+}
+
+@media only screen and (min-width: 464px) {  
+  section#about aside h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {  
+  section#about aside h2 {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  section#about {
+    padding-bottom: 2rem;
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  section#about article {
+    width: 50%;
+  }
+
+  section#about aside {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    width: calc(50% - 6rem);
+  }
+  
+  section#about aside h2 {
+    font-size: 2.2rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  section#about aside h2 {
+    font-size: 3rem;
+  }
+}
+
+/* * ---------- Filter Section ---------- */
+
+section#filter {
+  width: 100%;
+  padding: 2rem 3rem;
+}
+
+section#filter div.error-message {
+  display: none;
+}
+
+section#filter div.filter-container {
+  background-color: var(--color-100);
+  padding: 2rem 3rem;
+  width: 100%;
+  box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+}
+
+section#filter div.filter-container h2 {
+  
+}
+
+@media only screen and (min-width: 1024px) {
+  section#filter {
+    margin-bottom: 4rem; /* ? remove if breaking news content is loaded */
+  }
+  
+  section#filter div.error-message {
+    
+  }
+  
+  section#filter div.filter-container {
+        width: 50%;
+  }
+  
+  section#filter div.filter-container h2 {
+    
+  }
 }
