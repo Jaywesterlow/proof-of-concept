@@ -1,11 +1,11 @@
 /* ---- Global styles ---- */
 
 :root {
-  --primary-color: #FFD200;
-	--color-100: #D7D2CB;
-	--color-40: #E9E6E2;
-	--color-20: #F2F1F0;
-	--color-black: #000;
+  --primary-color: #ffd200;
+  --color-100: #d7d2cb;
+  --color-40: #e9e6e2;
+  --color-20: #f2f1f0;
+  --color-black: #000;
 }
 
 * {
@@ -16,112 +16,475 @@
 }
 
 body {
-
+  background-color: var(--color-20);
 }
 
 /* * ---------- Navigation ---------- */
 
 nav {
-    background-color: var(--color-black);
-    padding: .6rem .5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+  background-color: var(--color-black);
+  padding: 0.6rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  /* * Sticky Navbar 🕸 */
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-img {
-    height: 46px;
-	padding: .25rem 1rem;
+nav img {
+  height: 46px;
+  padding: 0.25rem 1rem;
 }
 
 summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-	flex-direction: column;
-    width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 30px;
 }
 
 summary span {
-    display: block;
-    width: 100%;
-    height: 4px;
-    background-color: var(--color-20);
-    margin: 3px 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--color-20);
+  margin: 3px 0;
 }
 
 /* * ---------- Animations ---------- */
 summary span:nth-child(1) {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 summary span:nth-child(2) {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 summary span:nth-child(3) {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    max-height: 0;
-    position: absolute;
-    top: 50px;
-    right: 0;
-    background-color: var(--color-black);
-    width: 100%;
-    z-index: 1;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  max-height: 0;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--color-black);
+  width: 100%;
+  z-index: 1;
 }
 
 li {
-    padding: 10px;
+  padding: 10px;
 }
 
 a {
-    color: var(--color-20);
-    text-decoration: none;
-	transition: all .4s ease-in-out;
+  color: var(--color-20);
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
 }
 
 a:hover {
-	text-decoration: underline;
-	transition: all .4s ease-in-out;
+  text-decoration: underline;
+  transition: all 0.4s ease-in-out;
 }
 
 /* Add the sliding effect */
 details[open] ul {
-    max-height: 300px;
-    transition: 0.5s ease-in;
+  max-height: 300px;
+  transition: 0.5s ease-in;
 }
 
-@media (min-width: 1024px) {
-	
-    details {
-        display: none;
-    }
+@media only screen and (min-width: 1024px) {
+  details {
+    display: none;
+  }
 
-	nav {
-		padding: 0 12rem;
+  nav {
+    padding: 0 12rem;
+  }
+
+  nav img {
+    height: 60px;
+  }
+
+  nav ul {
+    display: flex;
+    max-height: none;
+    position: static;
+    flex-direction: row;
+    padding: 1rem 0;
+  }
+
+  li {
+    padding: 10px 20px;
+  }
+}
+
+/* * ---------- Main ---------- */
+
+/* * ---------- Header ---------- */
+
+header {
+  height: 100vh;
+  background-color: var(--color-20);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+header article {
+  max-width: 326px;
+}
+
+header article small {
+  font-size: 1rem;
+}
+
+header article h1 {
+  font-size: 5rem;
+  line-height: 4rem;
+  margin-top: 0.5rem;
+  margin-left: -0.25rem; /*? H1 Left spacing for no reason??? */
+}
+
+header article q {
+  display: block;
+  margin-top: 1rem;
+}
+
+header article div {
+  display: flex;
+  margin-top: 1rem;
+}
+
+header article div button {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  background-color: var(--color-black);
+  color: var(--color-20);
+}
+
+header article div button:nth-of-type(1) {
+  margin-right: 1rem;
+}
+
+/* * ---------- Aside (Animate on mobile) ---------- */
+
+header aside {
+  display: none; /*? Remove display none later for mobile animation */
+}
+
+header aside img {
+  width: 100%;
+}
+
+/* * ---------- Header @media ---------- */
+
+@media only screen and (min-width: 1024px) {
+  header {
+    padding: 0 6rem;
+    justify-content: space-between;
+  }
+
+  header article {
+    padding: 0 1rem;
+    max-width: 50%;
+  }
+
+  header article small {
+    font-size: 1.5rem;
+  }
+
+  header article h1 {
+    font-size: 6.5rem;
+    line-height: 5.5rem;
+    margin-left: -0.4rem;
+  }
+
+  header article q {
+    font-size: 1.5rem;
+  }
+
+  header article div button {
+    padding: 0.5rem 1.5rem;
+  }
+
+  /* * ---------- Aside @media ---------- */
+
+  header aside {
+    display: block;
+    width: 50%;
+  }
+
+  header aside img {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  header {
+    padding: 0 12rem;
+  }
+
+  header article h1 {
+    font-size: 7.5rem;
+    line-height: 6rem;
+  }
+}
+
+/* * ---------- Scroll / Swipe Animation ---------- */
+
+header > div {
+	position: absolute;
+	left: calc(50% - 2.5rem);
+	bottom: 0;
+}
+
+@media only screen and (min-width: 1024px) {
+		header > div {
+		position: absolute;
+		left: calc(50% - 1.25rem);
+		bottom: 0;
 	}
+}
 
-	img {
-		height: 60px;
+/* * ---------- Scroll Animation ---------- */
+
+@keyframes scrollwheel {
+  0%,
+  50% {
+    top: 0;
+    opacity: 1;
+  }
+
+  80% {
+    top: 0.5rem;
+    opacity: 0;
+  }
+
+  90% {
+    top: 0;
+    opacity: 0;
+  }
+
+  95% {
+    top: 0;
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+a.scroll-mouse {
+  border: 2px solid var(--color-black);
+  padding: 0.75rem 1rem 1.25rem;
+  border-radius: 24px;
+  position: relative;
+  left: calc(50% - 1.25rem);
+  bottom: 2rem;
+  transition: 150ms;
+  display: none;
+}
+
+a.scroll-mouse:hover {
+	cursor: pointer;
+}
+
+a.scroll-mouse:active {
+	border: 2px solid var(--color-100);
+}
+
+a.scroll-mouse::before {
+	content: "";
+	position: relative;
+	display: inline-block;
+	background-color: var(--color-black);
+	width: 0.25rem;
+	height: 0.75rem;
+	border-radius: 24px;
+	animation: scrollwheel 3s infinite;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+	transition: 150ms;
+}
+
+a.scroll-mouse:active::before {
+	background-color: var(--color-100);
+}
+
+a.scroll-mouse svg {
+	position: absolute;
+	display: inline-block;
+	width: 12px;
+	height: 21px;
+	margin-top: 2px;
+	transform: rotateZ(90deg);
+	fill: var(--color-black);
+	left: calc(50% - 6px);
+	top: 3rem;
+	transition: 350ms;
+}
+
+a.scroll-mouse:hover svg {
+	margin-top: 7px;
+	cursor: pointer;
+}
+
+a.scroll-mouse:active svg {
+	fill: var(--color-100);
+}
+
+@media only screen and (min-width: 1024px) {
+	a.scroll-mouse {
+		display: block;
 	}
+}
 
-    nav ul {
-        display: flex;
-        max-height: none;
-        position: static;
-        flex-direction: row;
-		padding: 1rem 0;
-    }
+/* * ---------- Swipe Animation ---------- */
 
-    li {
-        padding: 10px 20px;
-    }
+@keyframes swipe-motion {
+  0% {
+    top: 2rem;
+    right: -3rem;
+    transform: rotate(-55deg);
+    opacity: 0;
+  }
+
+  25% {
+    top: 0.25rem;
+    right: -2rem;
+    transform: rotate(-60deg);
+    opacity: 1;
+  }
+
+  50% {
+    top: 0.25rem;
+    right: -2.25rem;
+    transform: rotate(-120deg);
+    transform-origin: 29px 20px;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  75%,
+  98% {
+    top: -3rem;
+    right: -2.25rem;
+    transform: rotate(-20deg);
+    transform-origin: center;
+  }
+
+  98% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes swiped {
+  0%,
+  50% {
+    top: 0;
+    opacity: 1;
+  }
+
+  80% {
+    top: -2rem;
+    opacity: 0;
+  }
+
+  90% {
+    top: 0;
+    opacity: 0;
+  }
+
+  95% {
+    top: 0;
+    opacity: 0.5;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+a.swipe-finger {
+  position: relative;
+  transition: 150ms;
+  display: block;
+}
+
+a.swipe-finger > span {
+	width: 1.75rem;
+	height: 1.75rem;
+	border: 2px solid var(--color-black);
+	border-radius: 100%;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	left: calc(50% - 0.5rem);
+	top: 0.375rem;
+	animation: swiped 4s infinite;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+a.swipe-finger:active > span {
+	border: 2px solid var(--color-100);
+}
+
+a.swipe-finger > span > span {
+	width: 0.95rem;
+	height: 0.95rem;
+	background-color: var(--color-black);
+	border-radius: 100%;
+}
+
+a.swipe-finger:active > span > span {
+	background-color: var(--color-100);
+}
+
+a.swipe-finger svg {
+	position: relative;
+	top: 2rem;
+	right: -3rem;
+	width: 5rem;
+	height: auto;
+	fill: var(--color-black);
+	transform: rotate(-30deg);
+	animation: swipe-motion 4s infinite;
+	animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
+a.swipe-finger:active svg {
+	fill: var(--color-100);
+}
+
+/*  */
+
+@media only screen and (min-width: 1024px) {
+	a.swipe-finger svg {
+		display: none;
+	}
 }
