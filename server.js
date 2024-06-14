@@ -4,6 +4,7 @@ import fetchJson from "./helpers/fetch-json.js";
 const app = express();
 
 const apiUrl = "https://api.mobile.bnr.nl/v1/articles";
+const audioUrl = "http://25683.live.streamtheworld.com/BNR_BUSINESS_BEATS.mp3";
 
 // Stel ejs in als template engine
 app.set("view engine", "ejs");
@@ -19,21 +20,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // ---- GET Routes ----
 
-// Maak een GET route voor de index
-app.get("/", function (request, response) {
-  // Haal alle personen uit de WHOIS API op
-  fetchJson(apiUrl).then((apiData) => {
-    // apiData bevat gegevens van alle personen uit alle squads
-    // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
-
-    // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-    response.render("index", { article: apiData.data });
+app.get("/", (request, response) => {
+  fetchJson(apiUrl).then((articles) => {
+    const maxArticles = articles.slice(0, 12);
+    response.render("index", {
+      maxArticles,
+      audioUrl,
+    });
   });
 });
-
-app.get('/', (request, response) => {
-    response.render('index')
-})
 
 app.set("port", process.env.PORT || 8000);
 

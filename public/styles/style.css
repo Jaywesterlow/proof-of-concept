@@ -88,7 +88,7 @@ nav img {
   padding: 0.25rem 1rem;
 }
 
-summary {
+nav details summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,7 +117,7 @@ summary span:nth-child(3) {
   transition: transform 0.3s ease;
 }
 
-ul {
+nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -131,38 +131,38 @@ ul {
   z-index: 1;
 }
 
-li {
+nav ul li {
   padding: 10px;
 }
 
-a {
+nav ul li a {
   color: var(--color-20);
   text-decoration: none;
   transition: all 0.4s ease-in-out;
 }
 
-a:hover {
+nav ul li a:hover {
   text-decoration: underline;
   transition: all 0.4s ease-in-out;
 }
 
 /* Add the sliding effect */
-details[open] ul {
+nav details[open] ul {
   max-height: 300px;
   transition: 0.5s ease-in;
 }
 
 @media only screen and (min-width: 1024px) {
-  details {
-    display: none;
-  }
-
   nav {
     padding: 0 12rem;
   }
 
   nav img {
     height: 60px;
+  }
+
+  nav details {
+    display: none;
   }
 
   nav ul {
@@ -173,7 +173,7 @@ details[open] ul {
     padding: 1rem 0;
   }
 
-  li {
+  nav ul li {
     padding: 10px 20px;
   }
 }
@@ -535,26 +535,49 @@ section#about {
   background-color: var(--color-100);
   padding: 2rem 3rem 20rem;
   position: relative;
-  margin-bottom: 14rem; /* ? change when breaking news is loaded in */
+  margin-bottom: 18rem; /* ? change when breaking news is loaded in */
+  box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
 }
 
 section#about article {
   margin-bottom: 4rem;
 }
 
+section#about article h2 {
+  margin-bottom: 2rem;
+}
+section#about article p {
+  margin-bottom: 2rem;
+  line-height: 1.8rem;
+  font-size: 1.4rem;
+}
+
 section#about aside {
   position: absolute;
   width: calc(100% - 6rem);
   background-color: var(--primary-color);
-  padding: 1rem 1rem 0;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+section#about aside h2 {
+  margin-bottom: 2rem;
+}
+
 section#about aside div {
-  height: 300px;
+  padding: 4rem;
+  color: var(--color-100);
+  height: 432px;
+  text-align: center;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 @media only screen and (min-width: 464px) {  
@@ -571,30 +594,38 @@ section#about aside div {
 
 @media only screen and (min-width: 1024px) {
   section#about {
-    padding-bottom: 2rem;
+    padding: 2rem 12rem;
+    margin-bottom: 4rem;
     display: flex;
-    margin-bottom: 0;
   }
 
   section#about article {
     width: 50%;
+    margin-bottom: 0;
+
   }
 
   section#about aside {
     position: absolute;
     top: 2rem;
-    right: 3rem;
-    width: calc(50% - 6rem);
+    right: 12rem;
+    width: calc(50% - 14rem);
   }
   
   section#about aside h2 {
-    font-size: 2.2rem;
+    font-size: 1.3rem;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   section#about aside h2 {
-    font-size: 3rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  section#about aside h2 {
+    font-size: 2.2rem;
   }
 }
 
@@ -602,12 +633,14 @@ section#about aside div {
 
 section#filter {
   width: 100%;
-  padding: 2rem 3rem;
+  padding: 2rem 3rem 0;
+  margin-bottom: 2em;
 }
 
 section#filter div.error-message {
   display: none;
 }
+
 
 section#filter div.filter-container {
   background-color: var(--color-100);
@@ -617,25 +650,169 @@ section#filter div.filter-container {
   -webkit-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
 }
-
-section#filter div.filter-container h2 {
   
+section#filter h2 {
+  margin-bottom: 	1rem;
 }
+
+section#filter ul {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+ 
+section#filter ul li {
+  list-style-type: none;
+  padding: .5rem 1rem;
+  background-color: var(--color-black);
+}
+
+section#filter ul li a {
+  color: var(--color-20);
+  text-decoration: none;
+}
+/* section#filter div.filter-container ul {
+  display: block;
+} */
 
 @media only screen and (min-width: 1024px) {
   section#filter {
-    margin-bottom: 4rem; /* ? remove if breaking news content is loaded */
+    padding: 0 12rem;
+    margin-bottom: 4rem;
   }
   
   section#filter div.error-message {
-    
+    /*TODO: MAAK ERROR MESSAGE */
   }
   
   section#filter div.filter-container {
-        width: 50%;
+        width: calc(50% - 2rem);
+  }
+}
+
+/* * ---------- Articles Section ---------- */
+
+section#articles {
+  width: 100%;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+section#articles article {
+  width: 100%;
+  padding: 2rem 3rem;
+  margin-bottom: 4rem;
+  background-color: var(--color-100);
+  box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -5px 5px 0px 0px rgba(0,0,0,0.75);
+}
+
+section#articles article picture {
+  width: 100%;
+}
+
+section#articles article picture img {
+  width: 100%;
+}
+
+section#articles article h2 {
+  margin-bottom: 1rem;
+}
+
+section#articles article p {
+  margin-bottom: 1rem;
+
+}
+
+
+@media only screen and (min-width: 1024px) {
+  section#articles {
+    padding: 0 12rem 2rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0 4rem;
   }
   
-  section#filter div.filter-container h2 {
-    
+  section#articles article {
+    flex: 1 1 calc(50% - 4rem);
   }
+}
+
+/* * ---------- Footer ---------- */
+
+footer.footer {
+  padding: 2rem 3rem;
+  width: 100%;
+  background-color: var(--color-black);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+footer.footer article,
+footer.footer aside {
+  width: 100%;
+  flex: 1 1 calc(25% - 3rem);
+
+}
+footer.footer article h3,
+footer.footer aside h3 {
+  color: var(--color-20);
+  margin-bottom: .5rem;
+}
+
+footer.footer article ul,
+footer.footer aside ul {
+  list-style-type: none;
+}
+
+footer.footer article ul li {
+  line-height: 1.5rem;
+  transition: 300ms all ease-in-out;
+}
+
+footer.footer article ul li:hover {
+  margin-left: 5px;
+  transition: 300ms all ease-in-out;
+}
+
+footer.footer article ul li a {
+  text-decoration: none;
+  color: var(--color-40);
+  }
+  
+footer.footer article ul li a:active {
+  color: var(--color-100);
+}
+
+footer.footer aside ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+footer.footer aside ul li {
+  flex: 1 0 calc(50% - 10px); 
+}
+
+@media only screen and (min-width: 1024px) {
+  footer.footer {
+    padding: 2rem 12rem;
+  }
+}
+
+/* * ---------- Second Footer ---------- */
+
+
+footer.second-footer {
+  width: 100%;
+  background-color: var(--color-100);
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  font-weight: 900;
 }
