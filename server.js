@@ -20,13 +20,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // ---- GET Routes ----
 
+// Get index, geef eerste 12 artikelen mee, geef audio URL mee
 app.get("/", (request, response) => {
   fetchJson(apiUrl).then((articles) => {
     const maxArticles = articles.slice(0, 12);
-    response.render("index", {
-      maxArticles,
-      audioUrl,
-    });
+    response.render("index", {maxArticles,audioUrl});
   });
 });
 
