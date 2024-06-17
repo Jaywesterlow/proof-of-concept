@@ -286,6 +286,7 @@ header aside {
 
 .hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 header > div {
@@ -729,7 +730,31 @@ section#articles article h2 {
 
 section#articles article p {
   margin-bottom: 1rem;
+}
 
+section#articles article form {
+  display: flex;
+  align-items: center;
+}
+
+section#articles article span {
+  font-size: 1rem;
+  color: var(--color-black);
+  margin-left: 1rem;
+}
+
+section#articles article form button {
+  background-color: var(--color-black);
+  padding: .5rem 1.3rem;
+  border: none;
+  color: var(--color-20);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+section#articles article form button svg {
+  margin-left: .4rem;
 }
 
 
@@ -744,6 +769,26 @@ section#articles article p {
   section#articles article {
     flex: 1 1 calc(50% - 4rem);
   }
+}
+
+
+/* * ---------- Custom alert ---------- */
+
+section#articles #custom-alert {
+  position: fixed;
+  top: 6rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80%;
+  max-width: 340px;
+  padding: .5rem 1.5rem;
+  background-color: var(--primary-color);
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
 }
 
 /* * ---------- Footer ---------- */

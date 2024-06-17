@@ -6,26 +6,37 @@ const app = express();
 const apiUrl = "https://api.mobile.bnr.nl/v1/articles";
 const audioUrl = "http://25683.live.streamtheworld.com/BNR_BUSINESS_BEATS.mp3";
 
-// Stel ejs in als template engine
+// Voeg een servervariabele toe om het aantal keer klikken bij te houden
+let shareCounter = 0;
+
+
 app.set("view engine", "ejs");
 
-// Stel de map met ejs templates in
 app.set("views", "./views");
 
-// Gebruik de map 'public' voor statische resources, zoals stylesheets, afbeeldingen en client-side JavaScript
 app.use(express.static("./public"));
 
-// Zorg dat werken met request data makkelijker wordt
 app.use(express.urlencoded({ extended: true }));
 
 // ---- GET Routes ----
 
-// Get index, geef eerste 12 artikelen mee, geef audio URL mee
+// Get index, geef eerste 12 artikelen, audio URL en elk artikels desbetreffende link
 app.get("/", (request, response) => {
   fetchJson(apiUrl).then((articles) => {
     const maxArticles = articles.slice(0, 12);
-    response.render("index", {maxArticles,audioUrl});
+    const shareLink = articles.map((artikel) => artikel.shareURL);
+    response.render("index", {maxArticles, shareLink, shareCounter, audioUrl});
   });
+});
+
+// ---- POST Routes ----
+
+// Implementeer de POST-route voor het bijwerken van de teller
+app.post("/update-share-counter", (request, response) => {
+  // Verhoog de teller bij elk verzoek
+  shareCounter++;
+  // Stuur de bijgewerkte tellerwaarde terug naar de client (bijvoorbeeld in JSON-formaat)
+  response.json({ shareCount: shareCounter });
 });
 
 app.set("port", process.env.PORT || 8000);
