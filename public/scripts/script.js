@@ -20,13 +20,35 @@ document.addEventListener("DOMContentLoaded", function () {
 // * ---------- Copy function ----------
 
 // Voeg een event listener toe aan alle "Share"-knoppen
-const shareButtons = document.querySelectorAll(".article-item button#share-button");
+const shareButtons = document.querySelectorAll(".share-button");
+console.log(shareButtons)
 
 shareButtons.forEach((button) => {
   button.addEventListener("click", function () {
     const copyLink = this.getAttribute("data-share-url");
+    const articleId = this.getAttribute("data-article-id");
+
+    // Controleer of articleId correct is
+    console.log("Clicked articleId:", articleId);
+
     copyToClipboard(copyLink);
     showCustomAlert();
+
+    fetch('/update-share-counter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ articleId })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Controleer de serverreactie
+      console.log("Response from server:", data);
+
+      const shareCounterElement = this.closest('.article-item').querySelector('.share-counter');
+      shareCounterElement.textContent = `${data.shareCount} keer gedeeld`;
+    });
   });
 });
 

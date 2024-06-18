@@ -85,7 +85,7 @@
 
   <section id="articles">
     <% maxArticles.forEach(article => { %>
-    <article class="article-item">
+    <article class="article-item <%= article.id %>">
       <% if (article.photo) { %>
       <picture>
         <source
@@ -111,11 +111,11 @@
       <p><%= article.introduction %></p>
       <form action="/update-share-counter" id="share-form">
         <label for="share-button"></label>
-        <button type="button" id="share-button" data-share-url="<%= article.shareURL %>">
+        <button type="button" class="share-button" data-article-id="<%= article.id %>" data-share-url="<%= article.shareURL %>">
           Delen
           <%- include('partials/svg/share') %>
         </button>
-        <span><%= shareCounter %> keer gedeeld</span>
+        <span class="share-counter"><%= article.shareCounter %> keer gedeeld</span>
       </form>
     </article>
     <% }) %>
@@ -124,7 +124,7 @@
     </div>
   </section>
 </main>
-
+<!--  -->
 <script src="/scripts/script.js"></script>
 
 <%- include('partials/footer') %> <%- include('partials/foot') %>
