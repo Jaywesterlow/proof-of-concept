@@ -52,15 +52,15 @@ app.post("/update-share-counter", (request, response) => {
   // Haal shareCounters op uit de sessie of maak een nieuwe
   const shareCounters = request.session.shareCounters || {};
 
-  // Update shareCounter voor het specifieke artikel ID
+  // Update shareCounter voor het specifieke artikel
   if (!shareCounters[articleId]) {
     shareCounters[articleId] = 0;
   }
 
-  // Voeg 1 toe op de counter met het juiste artikel ID
+  // Voeg 1 toe op de counter met de juiste artikel ID
   shareCounters[articleId]++;
 
-  // Sla shareCounters op in de sessie
+  // Sla shareCounters op in sessie
   request.session.shareCounters = shareCounters;
 
   response.json({ shareCount: shareCounters[articleId] });
