@@ -19,20 +19,16 @@ app.use(
 );
 
 app.set("view engine", "ejs");
-
 app.set("views", "./views");
-
 app.use(express.static("./public"));
-
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Zorgt ervoor dat JSON-verzoeken correct worden verwerkt
 
 // ---- GET Routes ----
 
-// Get index, geef eerste 12 artikelen, audio URL en elk artikels' desbetreffende link
 app.get("/", (request, response) => {
   fetchJson(apiUrl).then((articles) => {
     const maxArticles = articles.slice(0, 12);
-    const shareLink = articles.map((artikel) => artikel.shareURL);
 
     // Local shareCounters object per request
     const shareCounters = request.session.shareCounters || {};
@@ -44,13 +40,12 @@ app.get("/", (request, response) => {
     // Sla shareCounters op in de sessie
     request.session.shareCounters = shareCounters;
 
-    response.render("index", { maxArticles, shareLink, audioUrl }); // shareCounters??
+    response.render("index", { maxArticles, audioUrl });
   });
 });
 
 // ---- POST Routes ----
 
-// POST voor het bijwerken van share counter
 app.post("/update-share-counter", (request, response) => {
   const { articleId } = request.body;
 
