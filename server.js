@@ -74,7 +74,7 @@ app.post("/update-share-counter", (request, response) => {
 // Post route for e-mail
 app.post("/post-signup", function (request, response) {
   const email = request.body.email;
-  response.render("signup", { e: email });
+  response.render("signup", { email: email });
 });
 
 app.set("port", process.env.PORT || 8000);
