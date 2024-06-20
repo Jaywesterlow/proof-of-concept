@@ -2,21 +2,21 @@ import express from "express";
 import fetchJson from "./helpers/fetch-json.js";
 import session from "express-session";
 
-
 const app = express();
 
 const apiUrl = "https://api.mobile.bnr.nl/v1/articles";
 const audioUrl = "http://25683.live.streamtheworld.com/BNR_BUSINESS_BEATS.mp3";
 
-const sessionSecret = process.env.SESSION_SECRET || 'key';
+const sessionSecret = process.env.SESSION_SECRET || "key";
 
-app.use(session({
-  secret: sessionSecret,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // secure:true in productie met HTTPS
-}));
-
+app.use(
+  session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // secure:true in productie met HTTPS
+  })
+);
 
 app.set("view engine", "ejs");
 
@@ -37,14 +37,14 @@ app.get("/", (request, response) => {
     // Local shareCounters object per request
     const shareCounters = request.session.shareCounters || {};
 
-    maxArticles.forEach(article => {
+    maxArticles.forEach((article) => {
       article.shareCounter = shareCounters[article.id] || 0;
     });
 
     // Sla shareCounters op in de sessie
     request.session.shareCounters = shareCounters;
 
-    response.render("index", {maxArticles, shareLink, audioUrl}); // shareCounters??
+    response.render("index", { maxArticles, shareLink, audioUrl }); // shareCounters??
   });
 });
 
@@ -61,7 +61,7 @@ app.post("/update-share-counter", (request, response) => {
   if (!shareCounters[articleId]) {
     shareCounters[articleId] = 0;
   }
-  
+
   // Voeg 1 toe op de counter met het juiste artikel ID
   shareCounters[articleId]++;
 
@@ -69,6 +69,12 @@ app.post("/update-share-counter", (request, response) => {
   request.session.shareCounters = shareCounters;
 
   response.json({ shareCount: shareCounters[articleId] });
+});
+
+// Post route for e-mail
+app.post("/post-signup", function (request, response) {
+  const email = request.body.email;
+  response.render("signup", { e: email });
 });
 
 app.set("port", process.env.PORT || 8000);
