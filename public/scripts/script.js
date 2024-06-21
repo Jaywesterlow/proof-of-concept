@@ -43,7 +43,7 @@ shareButtons.forEach((button) => {
     })
     .then(response => response.json())
     .then(data => {
-      // Controleer de serverreactie
+
       // console.log("Response from server:", data);
       console.log(buttonClicked);
 
